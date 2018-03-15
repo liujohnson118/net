@@ -1,0 +1,7 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+<% if session[:user_id] %>
+  <a href='/logout' id="logoutLink">Logout</a>
+<% else %>
+  <a href='/login' id="loginLink">Login</a>
+<% end  %>
+</nav>

@@ -1,6 +1,6 @@
 
 <p id="notice"><%= notice %></p>
-
+<p>Que?</p>
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -19,6 +19,11 @@
 <p>
   <strong>Admin:</strong>
   <%= @user.admin %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @user.phone %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

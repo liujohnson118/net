@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  #before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -10,6 +10,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if session[:user_id].to_i==params[:id].to_i
+      puts "Param[:id] is #{params[:id]}"
+      puts "session[:user_id is #{session[:user_id]}"
+      @user = User.find(session[:user_id])
+    else
+      redirect_to '/login'
+    end
   end
 
   # GET /users/new
@@ -25,13 +32,25 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    if User.all.count<1
-      @user.admin = true
-    else
-      @user.admin = false
-    end
+    tmpAdmin = @user.admin
+
+    #Force the first user created to be an admin
+    # if User.all.count<1
+    #   @user.admin = true
+    # else
+    #   @user.admin = false
+    # end
+
+    # if tmpAdmin=="Yes"
+    #   @user.admin = true
+    # else
+    #   @user.admin = false
+    # end
+    @user.admin = (User.all.count<1 || tmpAdmin.admin=="Yes")
     respond_to do |format|
       if @user.save
+        session[:user_id]=@user.id
+        session[:admin]=@user.admin
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

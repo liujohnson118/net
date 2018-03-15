@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   get '/organizations' => "organizations#index"
   get '/users' => "users#index"
   get '/users/new' => "users#new"
+  get '/users/:id' => "users#show"
   post '/users/new' => "users#create"
   root 'organizations#index'
+
+   get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 end

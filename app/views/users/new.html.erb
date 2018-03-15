@@ -19,10 +19,13 @@
           <%= f.password_field :password, placeholder: 'Enter password' %>
           <span class="pure-form-message">This is a required field.</span>
 
-          <% if session[:admin] %>
+
+          <% if session[:admin]=="t" %>
             <%= label_tag(:admin , 'Admin?') %>
             <%= f.select :admin, ['Yes', 'No'] %>
             <span class="pure-form-message">This is a required field.</span>
+          <%else %>
+            <span class="pure-form-message">You are registering as a regular user as you are not an admin</span>
           <% end %>
 
           <button type="submit" class="pure-button pure-button-primary">Sign up</button>
