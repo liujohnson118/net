@@ -1,0 +1,36 @@
+<h1>New User</h1>
+
+  <div id='registration_form'>
+    <%= form_for :user, html: {class: 'pure-form pure-form-stacked'}, url: '/users/new' do |f| %>
+
+          <%= label_tag(:email, 'Email') %>
+          <%= f.email_field :email, placeholder: 'Enter e-mail' %>
+          <span class="pure-form-message">This is a required field.</span>
+
+          <%= label_tag(:phone, 'Phone') %>
+          <%= f.number_field :phone, placeholder: 'Enter phone number' %>
+          <span class="pure-form-message">This is a required field.</span>
+
+          <%= label_tag(:age, 'Number') %>
+          <%= f.number_field :age, placeholder: 'Enter age' %>
+          <span class="pure-form-message">This is a required field.</span>
+
+          <%= label_tag(:password, 'Password') %>
+          <%= f.password_field :password, placeholder: 'Enter password' %>
+          <span class="pure-form-message">This is a required field.</span>
+
+          <% if session[:admin] %>
+            <%= label_tag(:admin , 'Admin?') %>
+            <%= f.select :admin, ['Yes', 'No'] %>
+            <span class="pure-form-message">This is a required field.</span>
+          <% end %>
+
+          <button type="submit" class="pure-button pure-button-primary">Sign up</button>
+        </fieldset>
+    <% end %>
+      <% if flash[:signup_error].present? %>
+        <p><%= flash[:signup_error] %>
+      <% end %>
+  </div>
+
+<%= link_to 'Back', users_path %>
