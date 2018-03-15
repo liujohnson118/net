@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'organizations/new' => "organizations#new"
   post 'organizations/new' => "organizations#create"
   get '/organizations/:id' => "organizations#show"
+  get '/organizations' => "organizations#index"
+  get '/users' => "users#index"
   get '/users/new' => "users#new"
   post '/users/new' => "users#create"
   root 'organizations#index'
