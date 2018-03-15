@@ -9,11 +9,11 @@
 
           <%= label_tag(:phone, 'Phone') %>
           <%= f.number_field :phone, placeholder: 'Enter phone number' %>
-          <span class="pure-form-message">This is a required field.</span>
+          <span class="pure-form-message">Must be an integer between 0 and 9999999999999</span>
 
-          <%= label_tag(:age, 'Number') %>
+          <%= label_tag(:age, 'Age') %>
           <%= f.number_field :age, placeholder: 'Enter age' %>
-          <span class="pure-form-message">This is a required field.</span>
+          <span class="pure-form-message">Must be an integer between 0 and 200</span>
 
           <%= label_tag(:password, 'Password') %>
           <%= f.password_field :password, placeholder: 'Enter password' %>
@@ -23,12 +23,17 @@
           <% if session[:admin]=="t" %>
             <%= label_tag(:admin , 'Admin?') %>
             <%= f.select :admin, ['Yes', 'No'] %>
-            <span class="pure-form-message">This is a required field.</span>
+            <span class="pure-form-message">You're admin so you can add other people as admin or regular user</span>
           <%else %>
-            <span class="pure-form-message">You are registering as a regular user as you are not an admin</span>
+            <% if User.all.count<1 %>
+              <span class="pure-form-message">You are the first one to register to this organization and will be an admin automatically</span>
+            <% else %>
+              <span class="pure-form-message">You are registering as a regular user as you are not an admin</span>
+            <% end %>
           <% end %>
 
           <button type="submit" class="pure-button pure-button-primary">Sign up</button>
+
         </fieldset>
     <% end %>
       <% if flash[:signup_error].present? %>

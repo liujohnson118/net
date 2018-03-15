@@ -35,28 +35,28 @@ class UsersController < ApplicationController
     tmpAdmin = @user.admin
 
     #Force the first user created to be an admin
-    if User.all.count<1
-      @user.admin = true
-    else
-      @user.admin = false
-    end
+    puts "There are now #{User.all.count} users in this organization"
+    # if User.all.count<1
+    #   @user.admin = true
+    # else
+    #   @user.admin = false
+    # end
 
-    if tmpAdmin=="Yes"
-      @user.admin = true
-    else
-      @user.admin = false
-    end
+    # if tmpAdmin=="Yes"
+    #   @user.admin = true
+    # else
+    #   @user.admin = false
+    # end
+    @user.admin = tmpAdmin || User.all.count<1
 
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
         session[:admin]=@user.admin
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to '/logout', notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        for i in 0..18
-           puts "user save fail"
-        end
+        format.html { redirect_to '/logout', notice: 'User creation failed.' }
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

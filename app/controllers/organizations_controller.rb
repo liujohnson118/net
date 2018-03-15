@@ -32,7 +32,7 @@ class OrganizationsController < ApplicationController
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
         format.json { render :show, status: :created, location: @organization }
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'Organization creation fail.' }
         format.json { render json: @organization.errors, status: :unprocessable_entity }
       end
     end

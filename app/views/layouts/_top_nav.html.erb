@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 <% if session[:user_id] %>
-  <span>Logged in as <%= User.find(session[:user_id].to_i).email %></span>
+
   <a href='/logout' id="logoutLink">Logout</a>
 <% else %>
   <a href='/login' id="loginLink">Login</a>

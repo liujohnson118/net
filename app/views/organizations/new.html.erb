@@ -5,11 +5,11 @@
       <fieldset>
            <%= label_tag(:name, 'name') %>
           <%= f.text_field :name, placeholder: 'Enter name' %>
-          <span class="pure-form-message">This is a required field.</span>
+          <span class="pure-form-message">Unique string between length of 0 and 30.</span>
 
           <%= label_tag(:subdomain, 'Subdomain') %>
           <%= f.text_field :subdomain, placeholder: 'Enter subdomain' %>
-          <span class="pure-form-message">This is a required field.</span>
+          <span class="pure-form-message">Unique string between length of 0 and 30.</span>
 
           <button type="submit" class="pure-button pure-button-primary">Sign up</button>
         </fieldset>

@@ -10,7 +10,11 @@
   <%= @organization.subdomain %>
 </p>
 
-<a href=<%= @organization.subdomain%>.lvh.me:3000/users/new>Sign up for this organization (Please right click choose to open in new window)</a>
+<ul>
+<li><a href=<%= @organization.subdomain%>.lvh.me:3000/users/new>Sign up for this organization (Please right click choose to open in new tap)</a></li>
 
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
-<%= link_to 'Back', organizations_path %>
+<li><a href=<%= @organization.subdomain%>.lvh.me:3000/login>Login to this organization (Please right click choose to open in new tap)</a></li>
+
+
+<li><%= link_to 'Back', organizations_path %></li>
+</ul>
