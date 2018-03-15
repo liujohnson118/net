@@ -1,3 +1,20 @@
+class SubdomainConstraint
+
+  def self.matches?(request)
+    request.subdomain.present? && request.subdomain != 'www'
+  end
+end
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :users
+  constraints SubdomainConstraint do
+    resources :organizations
+  end
+
+  get 'organizations/new' => "organizations#new"
+  post 'organizations/new' => "organizations#create"
+  get '/organizations/:id' => "organizations#show"
+  get '/users/new' => "users#new"
+  post '/users/new' => "users#create"
+  root 'organizations#index'
 end

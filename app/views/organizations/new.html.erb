@@ -1,0 +1,23 @@
+<h1>New Organization</h1>
+
+ <div id='registration_form'>
+    <%= form_for :organization, html: {class: 'pure-form pure-form-stacked'}, url: '/organizations/new' do |f| %>
+      <fieldset>
+           <%= label_tag(:name, 'name') %>
+          <%= f.text_field :name, placeholder: 'Enter name' %>
+          <span class="pure-form-message">This is a required field.</span>
+
+          <%= label_tag(:subdomain, 'Subdomain') %>
+          <%= f.text_field :subdomain, placeholder: 'Enter subdomain' %>
+          <span class="pure-form-message">This is a required field.</span>
+
+          <button type="submit" class="pure-button pure-button-primary">Sign up</button>
+        </fieldset>
+    <% end %>
+      <% if flash[:signup_error].present? %>
+        <p><%= flash[:signup_error] %>
+      <% end %>
+  </div>
+
+
+<%= link_to 'Back', organizations_path %>
