@@ -3,7 +3,7 @@
  <div id='registration_form'>
     <%= form_for :organization, html: {class: 'pure-form pure-form-stacked'}, url: '/organizations/new' do |f| %>
       <fieldset>
-           <%= label_tag(:name, 'name') %>
+           <%= label_tag(:name, 'Name') %>
           <%= f.text_field :name, placeholder: 'Enter name' %>
           <span class="pure-form-message">Unique string between length of 0 and 30.</span>
 
@@ -14,9 +14,7 @@
           <button type="submit" class="pure-button pure-button-primary">Sign up</button>
         </fieldset>
     <% end %>
-      <% if flash[:signup_error].present? %>
-        <p><%= flash[:signup_error] %>
-      <% end %>
+      <p id="notice"><%= notice %></p>
   </div>
 
 
