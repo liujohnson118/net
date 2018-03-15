@@ -35,18 +35,18 @@ class UsersController < ApplicationController
     tmpAdmin = @user.admin
 
     #Force the first user created to be an admin
-    # if User.all.count<1
-    #   @user.admin = true
-    # else
-    #   @user.admin = false
-    # end
+    if User.all.count<1
+      @user.admin = true
+    else
+      @user.admin = false
+    end
 
-    # if tmpAdmin=="Yes"
-    #   @user.admin = true
-    # else
-    #   @user.admin = false
-    # end
-    @user.admin = (User.all.count<1 || tmpAdmin.admin=="Yes")
+    if tmpAdmin=="Yes"
+      @user.admin = true
+    else
+      @user.admin = false
+    end
+
     respond_to do |format|
       if @user.save
         session[:user_id]=@user.id
