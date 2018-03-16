@@ -1,9 +1,10 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 <% if session[:user_id] %>
-
   <a href='/logout' id="logoutLink">Logout</a>
 <% else %>
+  <% if request.host.to_s!='localhost'%>
   <a href='/login' id="loginLink">Login</a>
-  <a href='/register' id="registerLink">Register</a>
+  <a href='/users/new' id="registerLink">Register</a>
+  <% end %>
 <% end  %>
 </nav>

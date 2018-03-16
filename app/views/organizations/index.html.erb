@@ -5,9 +5,11 @@
 <table>
   <thead>
     <tr>
+      <% if request.host.to_s=='localhost'%>
       <th>Name</th>
       <th>Subdomain</th>
       <th colspan="3"></th>
+      <%end%>
     </tr>
   </thead>
 
@@ -24,4 +26,6 @@
 
 <br>
 
-<%= link_to 'New Organization', new_organization_path %>
+<% if request.host.to_s=="localhost" %>
+  <%= link_to 'New Organization', new_organization_path %>
+<% end %>

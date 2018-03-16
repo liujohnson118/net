@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       puts "Param[:id] is #{params[:id]}"
       puts "session[:user_id is #{session[:user_id]}"
       @user = User.find(session[:user_id])
+      @organizations = Organization.all
     else
       redirect_to '/login'
     end
@@ -38,11 +39,28 @@ class UsersController < ApplicationController
     if !session[:user_id]
       redirect_to '/login'
     else
-      tmpUser=User.find(session[:user_id])
-
-      puts "fuck #{tmpUser}"
-      redirect_to root_url(subdomain: 'd')
-      puts "tripple fuck"
+      tmpUser = User.find(session[:user_id])
+      tmpEmail = tmpUser.email.to_s
+      tmpAge = tmpUser.age.to_i
+      tmpPhone = tmpUser.phone.to_i
+      tmpPW = tmpUser.password_digest.to_s
+      dest = params[:user][:subdomain].to_s
+      tmpAdmin = false
+      if tmpUser.admin
+        tmpAdmin = true
+      end
+      puts "New organization to switch to is #{params[:user][:subdomain]}"
+      session[:user_id] = nil
+      session[:admin] = nil
+      tmpUser.destroy
+      redirect_to root_url(subdomain: dest)
+      new_user = User.new(:email => tmpEmail, :age => tmpAge, :phone => tmpPhone, :password_digest => tmpPW, admin: tmpAdmin, subdomain: dest)
+      if new_user.save
+        puts "Request subdomain is #{request.subdomain}"
+        puts "User moved successfully"
+      else
+        puts "User moving failed"
+      end
     end
   end
 
@@ -55,20 +73,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     tmpAdmin = @user.admin
-
+    @user.subdomain = request.subdomain.to_s
     #Force the first user created to be an admin
     puts "There are now #{User.all.count} users in this organization"
-    # if User.all.count<1
-    #   @user.admin = true
-    # else
-    #   @user.admin = false
-    # end
-
-    # if tmpAdmin=="Yes"
-    #   @user.admin = true
-    # else
-    #   @user.admin = false
-    # end
     @user.admin = tmpAdmin || User.all.count<1
 
     respond_to do |format|

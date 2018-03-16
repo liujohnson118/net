@@ -17,6 +17,11 @@
 </p>
 
 <p>
+  <strong>Subdoamin:</strong>
+  <%= @user.subdomain %>
+</p>
+
+<p>
   <strong>Admin:</strong>
   <%if @user.admin.to_s=="t" %>
     <p>You are an admin user</p>
@@ -40,7 +45,13 @@
         </fieldset>
 <% end %>
 
-<a href="/moveOrg">Move organiation</a>
+<%= form_for :user, html: {class: 'pure-form pure-form-stacked'}, url: '/moveOrg' do |f| %>
+        <fieldset>
+          <%= label_tag(:new_subdomain, 'New organization') %>
+          <%= f.text_field :subdomain, placeholder: 'Enter new organization' %>
+          <button type="submit" class="pure-button pure-button-primary">Update organization</button>
+        </fieldset>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

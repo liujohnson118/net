@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   post '/updatePhone' => "users#updatePhone"
-  get '/moveOrg' => "users#moveOrg"
+  post '/moveOrg' => "users#moveOrg"
 end
