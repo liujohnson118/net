@@ -11,6 +11,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1.json
   def show
     @organization = Organization.find(params[:id])
+    redirect_to root_url(subdomain: @organization.subdomain, host:'lvh.me')
   end
 
   # GET /organizations/new

@@ -31,5 +31,16 @@
   <%= @user.phone %>
 </p>
 
+<%= form_for :user, html: {class: 'pure-form pure-form-stacked'}, url: '/updatePhone' do |f| %>
+        <fieldset>
+          <%= label_tag(:new_phone, 'New phone') %>
+          <%= f.number_field :phone, placeholder: 'Enter new phone' %>
+          <span class="pure-form-message">Must be an integer between 0 and 9999999999999</span>
+          <button type="submit" class="pure-button pure-button-primary">Update phone</button>
+        </fieldset>
+<% end %>
+
+<a href="/moveOrg">Move organiation</a>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

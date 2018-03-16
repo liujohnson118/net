@@ -21,7 +21,29 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+  end
 
+  #POST /updatePhone
+  def updatePhone
+    if !session[:user_id]
+      redirect_to '/login'
+    else
+      puts "Subdomain is #{request.subdomain}"
+      User.find(session[:user_id]).update(phone: params[:user][:phone])
+      redirect_to '/users/'+session[:user_id].to_s
+    end
+  end
+
+  def moveOrg
+    if !session[:user_id]
+      redirect_to '/login'
+    else
+      tmpUser=User.find(session[:user_id])
+
+      puts "fuck #{tmpUser}"
+      redirect_to root_url(subdomain: 'd')
+      puts "tripple fuck"
+    end
   end
 
   # GET /users/1/edit
@@ -96,5 +118,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :age, :password, :phone, :admin)
+    end
+
+    def new_phone_params
+      params.require(:user).permit(:phone)
     end
 end
