@@ -1,3 +1,47 @@
 // Place all the styles related to the Organizations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#organizations_index_body{
+  background: url('river.jpg');
+  background-size:100%;
+}
+
+#all_orgs{
+  margin-top:5em;
+  background: white;
+  width:60%;
+  margin-left: 20%;
+  text-align:center;
+}
+
+#org_info{
+  width:50%;
+  margin-left: 90%;
+  background: white;
+}
+
+table{
+  margin:auto;
+}
+
+#organization_new_body{
+  background: url('bridge.jpg');
+  background-size: 100%;
+  width:40%;
+  margin:auto;
+  margin-top: 5em;
+}
+
+#organization_name{
+  margin:auto;
+}
+
+#organization_subdomain{
+  margin:auto;
+}
+
+
+#registration_form{
+  background: white;
+}

@@ -1,31 +1,36 @@
-<p id="notice"><%= notice %></p>
+<body id="organizations_index_body">
 
-<h1>Organizations</h1>
+<div id="all_orgs">
+  <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <% if request.host.to_s=='localhost'%>
-      <th>Name</th>
-      <th>Subdomain</th>
-      <th colspan="3"></th>
-      <%end%>
-    </tr>
-  </thead>
+  <h1>Organizations</h1>
 
-  <tbody>
-    <% @organizations.each do |organization| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= organization.name %></td>
-        <td><%= organization.subdomain %></td>
-        <td><%= link_to 'Show', organization %></td>
+        <% if request.host.to_s=='localhost'%>
+        <th>Name </th>
+        <th>Subdomain</th>
+        <th colspan="3"></th>
+        <%end%>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @organizations.each do |organization| %>
+        <tr>
+          <td><%= organization.name %> </td>
+          <td> <%= organization.subdomain %></td>
+          <td><%= link_to 'Show', organization %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% if request.host.to_s=="localhost" %>
-  <%= link_to 'New Organization', new_organization_path %>
-<% end %>
+  <br>
+
+  <% if request.host.to_s=="localhost" %>
+    <%= link_to 'New Organization', new_organization_path %>
+  <% end %>
+</div>
+</body>

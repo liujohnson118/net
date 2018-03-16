@@ -17,6 +17,7 @@
     <div id='registration_form'>
       <%= form_for :user, html: {class: 'pure-form pure-form-stacked'}, url: '/users/new' do |f| %>
           <fieldset>
+            <legend>Sign up as a new user</legend>
             <%= label_tag(:email, 'Email') %>
             <%= f.email_field :email, placeholder: 'Enter e-mail' %>
             <span class="pure-form-message">This is a required field.</span>
