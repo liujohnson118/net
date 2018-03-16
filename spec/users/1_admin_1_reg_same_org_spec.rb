@@ -32,8 +32,6 @@ feature "Add users to same organization" do
 
       #Expect to be redirected to login
       expect(page).to have_content("Login")
-      expect(page).to have_content("Email:")
-      expect(page).to have_content("Password:")
       fill_in "email", with: "admin1@c.ca"
       fill_in "password", with: "cccc"
       click_button "Submit"
@@ -51,8 +49,6 @@ feature "Add users to same organization" do
       #Test logging out
       click_link "Logout"
       expect(page).to have_content("Login")
-      expect(page).to have_content("Email:")
-      expect(page).to have_content("Password:")
 
       #Register a new regular user c2@c.ca
       Capybara.default_host = "http://lvh.me"
@@ -70,8 +66,6 @@ feature "Add users to same organization" do
       click_button "Sign up"
 
       expect(page).to have_content("Login")
-      expect(page).to have_content("Email:")
-      expect(page).to have_content("Password:")
       fill_in "email", with: "c2@c.ca"
       fill_in "password", with: "cccc2"
       click_button "Submit"
