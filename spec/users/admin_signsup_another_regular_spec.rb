@@ -48,37 +48,20 @@ feature "Add users to same organization" do
       expect(page).to have_content("You can add other users")
       click_on "here"
       expect(page).to have_content("You're admin so you can add other people as admin or regular user")
-
-      #Test logging out
-      click_link "Logout"
-      expect(page).to have_content("Login")
-      expect(page).to have_content("Email:")
-      expect(page).to have_content("Password:")
-
-      #Register a new regular user c2@c.ca
-      Capybara.default_host = "http://lvh.me"
-      Capybara.server_port = 3000
-      Capybara.app_host = "http://c.lvh.me:3000"
-      visit '/users/new'
-      expect(page).to have_content("There are currently 1 user(s) in this organization")
-      expect(page).to have_content("There are currently 1 admin user(s) in this organization")
-      expect(page).to have_no_content("You are the first one to register to this organization and will be an admin automatically")
       fill_in "user_email", with: "c2@c.ca"
       fill_in "user_phone", with: 112
-      fill_in "user_age", with: 2
+      fill_in "user_age", with: 12
       fill_in "user_password", with: "cccc2"
+      page.select 'No', from: 'user_admin'
       click_button "Sign up"
 
-      expect(page).to have_content("Login")
-      expect(page).to have_content("Email:")
-      expect(page).to have_content("Password:")
       fill_in "email", with: "c2@c.ca"
       fill_in "password", with: "cccc2"
       click_button "Submit"
-
-      #Expect some regular user stuff
       expect(page).to have_content("c2@c.ca")
       expect(page).to have_content("112")
+      expect(page).to have_content("12")
+      expect(page).to have_no_content("You're admin so you can add other people as admin or regular user")
       expect(page).to have_content("You are a regular user")
     end
 end

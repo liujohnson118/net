@@ -21,7 +21,10 @@ Rails.application.routes.draw do
   post '/users/new' => "users#create"
   root 'organizations#index'
 
-   get '/login' => 'sessions#new'
+  get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+
+  post '/updatePhone' => "users#updatePhone"
+  get '/moveOrg' => "users#moveOrg"
 end
