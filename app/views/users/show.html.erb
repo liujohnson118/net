@@ -1,57 +1,49 @@
+<body id="user_show">
+  <p id="notice"><%= notice %></p>
+  <div id="all_user_info">
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
 
-<p id="notice"><%= notice %></p>
-<p>Que?</p>
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+    <p>
+      <strong>Age:</strong>
+      <%= @user.age %>
+    </p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @user.age %>
-</p>
+    <p>
+      <strong>Pw:</strong>
+      <%= @user.password_digest %>
+    </p>
 
-<p>
-  <strong>Pw:</strong>
-  <%= @user.password_digest %>
-</p>
+    <p>
+      <strong>Subdomain:</strong>
+      <%= @user.subdomain %>
+    </p>
 
-<p>
-  <strong>Subdomain:</strong>
-  <%= @user.subdomain %>
-</p>
+    <p>
+      <strong>Admin:</strong>
+      <%if @user.admin.to_s=="t" %>
+        <p>You are an admin user</p>
+        <p>You can add other users <a href="/users/new" id="addUserHere">here</a></p>
+      <% else %>
+        <p>You are a regular user</p>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Admin:</strong>
-  <%if @user.admin.to_s=="t" %>
-    <p>You are an admin user</p>
-    <p>You can add other users <a href="/users/new" id="addUserHere">here</a></p>
-  <% else %>
-    <p>You are a regular user</p>
-  <% end %>
-</p>
+    <p>
+      <strong>Phone:</strong>
+      <%= @user.phone %>
+    </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
+    <%= form_for :user, html: {class: 'pure-form pure-form-stacked'}, url: '/updatePhone' do |f| %>
+            <fieldset>
+              <%= label_tag(:new_phone, 'New phone') %>
+              <%= f.number_field :phone, placeholder: 'Enter new phone' %>
+              <span class="pure-form-message">Must be an integer between 0 and 9999999999999</span>
+              <button type="submit" class="pure-button pure-button-primary">Update phone</button>
+            </fieldset>
+    <% end %>
 
-<%= form_for :user, html: {class: 'pure-form pure-form-stacked'}, url: '/updatePhone' do |f| %>
-        <fieldset>
-          <%= label_tag(:new_phone, 'New phone') %>
-          <%= f.number_field :phone, placeholder: 'Enter new phone' %>
-          <span class="pure-form-message">Must be an integer between 0 and 9999999999999</span>
-          <button type="submit" class="pure-button pure-button-primary">Update phone</button>
-        </fieldset>
-<% end %>
-
-<%= form_for :user, html: {class: 'pure-form pure-form-stacked'}, url: '/moveOrg' do |f| %>
-        <fieldset>
-          <%= label_tag(:new_subdomain, 'New organization') %>
-          <%= f.text_field :subdomain, placeholder: 'Enter new organization' %>
-          <button type="submit" class="pure-button pure-button-primary">Update organization</button>
-        </fieldset>
-<% end %>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  </div>
+</body>

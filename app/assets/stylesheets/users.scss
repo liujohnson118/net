@@ -1,3 +1,59 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+article.user_info {
+  float: right;
+  margin-right: 10%;
+  width: 25%;
+  border:1px solid grey;
+}
+
+body.background{
+  background: url('banff1.jpg');
+  background-size:100%;
+}
+
+#all_registration{
+  background: white;
+  width:50%;
+  border: 1px solid grey;
+  margin-left:25%;
+}
+
+#registration_form{
+  width:80%;
+  text-align: center;
+  margin:auto;
+}
+
+#user_phone{
+  margin:auto;
+}
+
+#user_email{
+  margin:auto;
+}
+
+#user_age{
+  margin:auto;
+}
+
+#user_password{
+  margin:auto;
+}
+
+#user_show{
+  background: url('banff2.jpg');
+  background-size:100%;
+}
+
+#all_user_info{
+  background: white;
+  width:50%;
+  border: 1px solid grey;
+  margin-left:25%;
+  margin-top:5em;
+  text-align:center;
+}
