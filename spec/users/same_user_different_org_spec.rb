@@ -16,7 +16,6 @@ feature "Add users" do
 
     expect(page).to have_content("OrgA")
     expect(page).to have_content("a")
-    expect(page).to have_content("Sign up for this organization (Please right click choose to open in new tap)")
 
     visit root_path
     click_link "New Organization"
@@ -27,12 +26,12 @@ feature "Add users" do
 
     expect(page).to have_content("OrgB")
     expect(page).to have_content("b")
-    expect(page).to have_content("Sign up for this organization (Please right click choose to open in new tap)")
 
     Capybara.default_host = "http://lvh.me"
     Capybara.server_port = 3000
     Capybara.app_host = "http://a.lvh.me:3000"
-    visit '/users/new'
+    visit root_path
+    click_link "Register"
     expect(page).to have_content("There are currently")
     expect(page).to have_content("You are the first one to register to this organization and will be an admin automatically")
     fill_in "user_email", with: "admin1@a.ca"

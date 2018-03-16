@@ -17,11 +17,11 @@ feature "Add users" do
     #Go to organization OrgC and create the very first user
     expect(page).to have_content("OrgC")
     expect(page).to have_content("c")
-    expect(page).to have_content("Sign up for this organization (Please right click choose to open in new tap)")
     Capybara.default_host = "http://lvh.me"
     Capybara.server_port = 3000
     Capybara.app_host = "http://c.lvh.me:3000"
-    visit '/users/new'
+    visit root_path
+    click_link "Register"
     expect(page).to have_content("There are currently")
     expect(page).to have_content("You are the first one to register to this organization and will be an admin automatically")
     fill_in "user_email", with: "admin1@c.ca"
