@@ -27,6 +27,7 @@ feature "Add users" do
     expect(page).to have_content("OrgB")
     expect(page).to have_content("b")
 
+    #Sign up using admin1@a.ca in OrgA
     Capybara.default_host = "http://lvh.me"
     Capybara.server_port = 3000
     Capybara.app_host = "http://a.lvh.me:3000"
@@ -40,7 +41,7 @@ feature "Add users" do
     fill_in "user_password", with: "aaaa"
     click_button "Sign up"
 
-    #Expect to be redirected to login
+    #Expect to be redirected to login to OrgA
     expect(page).to have_content("Login")
     expect(page).to have_content("Email:")
     expect(page).to have_content("Password:")
@@ -48,9 +49,10 @@ feature "Add users" do
     fill_in "password", with: "aaaa"
     click_button "Submit"
 
-    #Expect to see user info just for OrgC
+    #Expect to see user info just for OrgA
     expect(page).to have_content("admin1@a.ca")
     expect(page).to have_content("111")
+    expect(page).to have_content("Subdomain: a")
 
     #Expect to do stuff that only admins can do
     expect(page).to have_content("You are an admin user")
@@ -62,7 +64,8 @@ feature "Add users" do
     Capybara.default_host = "http://lvh.me"
     Capybara.server_port = 3000
     Capybara.app_host = "http://b.lvh.me:3000"
-    visit '/users/new'
+    visit root_path
+    click_link "Register"
     expect(page).to have_content("There are currently")
     expect(page).to have_content("You are the first one to register to this organization and will be an admin automatically")
     fill_in "user_email", with: "admin1@a.ca"
@@ -79,10 +82,11 @@ feature "Add users" do
     fill_in "password", with: "aaaa"
     click_button "Submit"
 
-    #Expect to see user info just for OrgC
+    #Expect to see user info just for OrgB
     expect(page).to have_content("admin1@a.ca")
     expect(page).to have_content("112")
     expect(page).to have_content("12")
+    expect(page).to have_content("Subdomain: b")
 
     #Go back to OrgA and check info
     Capybara.default_host = "http://lvh.me"

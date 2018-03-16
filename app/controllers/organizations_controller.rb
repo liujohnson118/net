@@ -4,6 +4,8 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
+    session[:user_id] = nil
+    session[:admin] = nil
     @organizations = Organization.all
   end
 

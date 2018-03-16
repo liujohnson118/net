@@ -41,6 +41,7 @@ feature "Add users" do
     #Expect to see user info just for OrgC
     expect(page).to have_content("admin1@c.ca")
     expect(page).to have_content("111")
+    expect(page).to have_content("Subdomain: c")
 
     #Expect to do stuff that only admins can do
     expect(page).to have_content("You are an admin user")
