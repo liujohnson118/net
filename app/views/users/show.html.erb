@@ -18,7 +18,12 @@
 
 <p>
   <strong>Admin:</strong>
-  <%= @user.admin %>
+  <%if @user.admin.to_s=="t" %>
+    <p>You are an admin user</p>
+    <p>You can add other users <a href="/users/new" id="addUserHere">here</a></p>
+  <% else %>
+    <p>You are a regular user</p>
+  <% end %>
 </p>
 
 <p>
