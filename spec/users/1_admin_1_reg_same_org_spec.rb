@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Add users to same organization" do
 
-  scenario "Create two users for 1 organization with 1 admin and 1 regular" do
+  scenario "Create two users for 1 organization with 1 admin and 1 regular through self-register" do
 
       #Expect success to create organization OrgC with subdomain c
       Capybara.default_host = "http://localhost"
@@ -18,13 +18,12 @@ feature "Add users to same organization" do
       #Go to organization OrgC and create the very first user
       expect(page).to have_content("OrgC")
       expect(page).to have_content("c")
-      expect(page).to have_content("Sign up for this organization (Please right click choose to open in new tap)")
       Capybara.default_host = "http://lvh.me"
       Capybara.server_port = 3000
       Capybara.app_host = "http://c.lvh.me:3000"
-      visit '/users/new'
+      visit root_path
+      click_link "Register"
       expect(page).to have_content("There are currently")
-      expect(page).to have_content("You are the first one to register to this organization and will be an admin automatically")
       fill_in "user_email", with: "admin1@c.ca"
       fill_in "user_phone", with: 111
       fill_in "user_age", with: 1
@@ -59,7 +58,8 @@ feature "Add users to same organization" do
       Capybara.default_host = "http://lvh.me"
       Capybara.server_port = 3000
       Capybara.app_host = "http://c.lvh.me:3000"
-      visit '/users/new'
+      visit root_path
+      click_link "Register"
       expect(page).to have_content("There are currently 1 user(s) in this organization")
       expect(page).to have_content("There are currently 1 admin user(s) in this organization")
       expect(page).to have_no_content("You are the first one to register to this organization and will be an admin automatically")

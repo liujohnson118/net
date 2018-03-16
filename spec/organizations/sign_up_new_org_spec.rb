@@ -4,6 +4,9 @@ feature "Organizations" do
   scenario "Create new organization" do
 
     #Expect success to create organization OrgC with subdomain c
+    Capybara.default_host = "http://localhost"
+    Capybara.server_port = 3000
+    Capybara.app_host = "http://localhost:3000"
     visit root_path
     click_link "New Organization"
     fill_in "organization_name", with: "OrgC"
