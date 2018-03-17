@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    tmpAdmin = @user.admin
+    tmpAdmin = @user.admin=="Yes"
     @user.subdomain = request.subdomain.to_s
     #Force the first user created to be an admin
     puts "There are now #{User.all.count} users in this organization"
