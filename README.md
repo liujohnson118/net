@@ -1,5 +1,7 @@
 # README
 
+Video README: https://www.youtube.com/watch?v=wgXWWhdqEZE&feature=youtu.be
+
 1. Clone the repo.
 2. If bundler not installed, do `gem install bundler`. Otherwise skip this step
 3. Run `bundle install` to install all depencies as shown in `Gemfile`
